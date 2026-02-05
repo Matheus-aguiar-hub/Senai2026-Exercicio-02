@@ -32,8 +32,16 @@ entradaDeDados.question('Digite seu nome: ', function(nome){
                     let tempoPagamento = pagamento
                     
                     let dividindoJuros = (valorJuros/100) 
-                    let calcularJuros = (Number(ValorCompra) * (Number(1 + dividindoJuros)) / Number(tempoPagamento) )
-                    console.log('O valor é: ' + calcularJuros)
+                    let calcularJuros = (Number(ValorCompra) * (Number(1 + dividindoJuros)) ** Number(tempoPagamento) )
+                    let jurosCalculado = (Number(calcularJuros) - Number(ValorCompra))
+                    console.log(`*****************Viva Moda***************** 
+                    \nMuito obrigado por realizar a sua compra conosco Sr(a) ${nomeCliente}.
+                    \nA compra do produto ${nomeProduto}, tem um valor de: ${ValorCompra}.
+                    \nA sua compra será parcelada em ${tempoPagamento} vezes e o Sr(a) pagará: ${calcularJuros.toFixed(3)}.
+                    \nO acréscimo realizado ao valor de: ${ValorCompra} será de ${jurosCalculado.toFixed(3)}.
+                    \nMuito obrigado por escolher a Viva Moda.
+                    \n*******************************************`)
+
                 })
             })
         })
