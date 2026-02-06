@@ -68,8 +68,11 @@ entradaDeDados.question('Digite seu nome: ', function(nome){
                         \nO acréscimo realizado ao valor de: ${ValorCompra} será de ${jurosCalculado.toFixed(2)}.
                         \nMuito obrigado por escolher a Viva Moda.
                         \n**********************************************************************`)}
-                        
                         // Tratando erros do usuario
+                        // Definindo variável caso o cliente digite as informações incorretas
+                        else{
+                            console.log('Erro: insira a forma de pagamento com as seguintes formas (Meses) ou (Anos)!!!')
+                            }
                         // Erro caso o usuario digite algo nulo ou vazio
                         if(nomeCliente == "" || nomeProduto == "" || ValorCompra == "" || formaParcelamento == "" || valorJuros == "" ){
                         console.log('Erro: insira as informações de forma correta!!!')}
@@ -77,12 +80,10 @@ entradaDeDados.question('Digite seu nome: ', function(nome){
                         else if(isNaN(ValorCompra) || isNaN(valorJuros)){
                         console.log('Erro: é permitido somente números')}
                         // Validação de somente letras
-                        else if(!isNaN(nomeCliente) || !isNaN(nomeProduto) || isNaN(formaParcelamento)){
+                        else if(!isNaN(nomeCliente) || !isNaN(nomeProduto)){
                         console.log('Erro: é permitido somente letras!')}
-                        // Definindo variável caso o cliente digite as informações incorretas
-                        else{
-                        console.log('Erro: insira a forma de pagamento com as seguintes formas (Meses) ou (Anos)!!!')
-                        }
+                        
+                       
                     })
                 })
             })  
