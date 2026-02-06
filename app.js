@@ -34,15 +34,14 @@ entradaDeDados.question('Digite seu nome: ', function(nome){
                     //Tempo de pagamento
                     entradaDeDados.question('Digite o tempo de pagamento: ', function(pagamento){
                         let tempoPagamento = pagamento
-
                         //Variável em anos
-                        if(formaParcelamento == 'Anos' || 'anos'){
+                        if(formaParcelamento == 'Anos' || formaParcelamento == 'anos'){
                         //Fazendo a multiplicação de anos (1,n) em *12 (meses)
-                        let parcelamentoAnos = (Number(tempoPagamento) * 12); 
+                        let parcelamentoAnos = tempoPagamento * 12
                         //Fazendo a conversão em %
-                        let dividindoJuros = (valorJuros / 100); 
+                        let dividindoJuros = (valorJuros / 100)
                         //Calculo do valor completo com o juros
-                        let calcularAnos = Number(ValorCompra) * (Number(1 + dividindoJuros)) ** Number(tempoPagamento);
+                        let calcularAnos = Number(ValorCompra) * (Number(1 + dividindoJuros)) ** Number(parcelamentoAnos);
                         //Calculo somente o juros 
                         let jurosAnos = calcularAnos - Number(ValorCompra);
                         //Fazendo o comprovante de pagamento em anos (sem formatação definida)
@@ -52,11 +51,11 @@ entradaDeDados.question('Digite seu nome: ', function(nome){
                         \nA sua compra será parcelada em ${parcelamentoAnos} vezes e o Sr(a) pagará: ${calcularAnos.toFixed(3)}.
                         \nO acréscimo realizado ao valor de: ${ValorCompra} será de ${jurosAnos.toFixed(3)}.
                         \nMuito obrigado por escolher a Viva Moda.
-                        \n**********************************************************************`)
+                        \n**********************************************************************`)}
                         //variável em meses
-                        }else if(formaParcelamento == 'Meses' || 'meses'){
+                        else if(formaParcelamento == 'Meses' || formaParcelamento == 'meses'){
                         //Fazendo a conversão em % 
-                        let dividindoJuros = (valorJuros/100) 
+                        let dividindoJuros = (valorJuros/100)
                         //Calculo do valor completo com o juros
                         let calcularJuros = (Number(ValorCompra) * (Number(1 + dividindoJuros)) ** Number(tempoPagamento))
                         //Calculo somente o juros 
@@ -69,11 +68,16 @@ entradaDeDados.question('Digite seu nome: ', function(nome){
                         \nO acréscimo realizado ao valor de: ${ValorCompra} será de ${jurosCalculado.toFixed(3)}.
                         \nMuito obrigado por escolher a Viva Moda.
                         \n**********************************************************************`)}
+
+                        // Tratando erros do usuario
+                        // Erro caso o usuario digite algo nulo ou vazio
+                        else if(nomeCliente == "" || nomeProduto == "" || ValorCompra == "" || formaParcelamento == "" || valorJuros == "" ){
+                            console.log('Erro: insira as informações de forma correta!!!')
+                        }
                         // Definindo variável caso o cliente digite as informações incorretas
                         else{
-                        console.log('Erro insira a forma de pagamento com as seguintes formas (Meses) ou (Anos)')
+                        console.log('Erro insira a forma de pagamento com as seguintes formas (Meses) ou (Anos)!!!')
                         }
-                         
                     })
                 })
             })  
