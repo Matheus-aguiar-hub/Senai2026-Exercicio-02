@@ -48,8 +48,8 @@ entradaDeDados.question('Digite seu nome: ', function(nome){
                         console.log(`*****************Viva Moda****************************************** 
                         \nMuito obrigado por realizar a sua compra conosco Sr(a) ${nomeCliente}.
                         \nA compra do produto ${nomeProduto}, tem um valor de: ${ValorCompra}.
-                        \nA sua compra será parcelada em ${parcelamentoAnos} vezes e o Sr(a) pagará: ${calcularAnos.toFixed(3)}.
-                        \nO acréscimo realizado ao valor de: ${ValorCompra} será de ${jurosAnos.toFixed(3)}.
+                        \nA sua compra será parcelada em ${parcelamentoAnos} vezes e o Sr(a) pagará: ${calcularAnos.toFixed(2)}.
+                        \nO acréscimo realizado ao valor de: ${ValorCompra} será de ${jurosAnos.toFixed(2)}.
                         \nMuito obrigado por escolher a Viva Moda.
                         \n**********************************************************************`)}
                         //variável em meses
@@ -61,22 +61,27 @@ entradaDeDados.question('Digite seu nome: ', function(nome){
                         //Calculo somente o juros 
                         let jurosCalculado = (Number(calcularJuros) - Number(ValorCompra))
                         //Fazendo o comprovante de pagamento em meses (sem formatação definida)
-                        console.log(`*****************Viva Moda****************************************** 
+                        console.log(`*************************Viva Moda********************************** 
                         \nMuito obrigado por realizar a sua compra conosco Sr(a) ${nomeCliente}.
                         \nA compra do produto ${nomeProduto}, tem um valor de: ${ValorCompra}.
-                        \nA sua compra será parcelada em ${tempoPagamento} vezes e o Sr(a) pagará: ${calcularJuros.toFixed(3)}.
-                        \nO acréscimo realizado ao valor de: ${ValorCompra} será de ${jurosCalculado.toFixed(3)}.
+                        \nA sua compra será parcelada em ${tempoPagamento} vezes e o Sr(a) pagará: ${calcularJuros.toFixed(2)}.
+                        \nO acréscimo realizado ao valor de: ${ValorCompra} será de ${jurosCalculado.toFixed(2)}.
                         \nMuito obrigado por escolher a Viva Moda.
                         \n**********************************************************************`)}
-
+                        
                         // Tratando erros do usuario
                         // Erro caso o usuario digite algo nulo ou vazio
-                        else if(nomeCliente == "" || nomeProduto == "" || ValorCompra == "" || formaParcelamento == "" || valorJuros == "" ){
-                            console.log('Erro: insira as informações de forma correta!!!')
-                        }
+                        if(nomeCliente == "" || nomeProduto == "" || ValorCompra == "" || formaParcelamento == "" || valorJuros == "" ){
+                        console.log('Erro: insira as informações de forma correta!!!')}
+                        // Validação de somente números 
+                        else if(isNaN(ValorCompra) || isNaN(valorJuros)){
+                        console.log('Erro: é permitido somente números')}
+                        // Validação de somente letras
+                        else if(!isNaN(nomeCliente) || !isNaN(nomeProduto) || isNaN(formaParcelamento)){
+                        console.log('Erro: é permitido somente letras!')}
                         // Definindo variável caso o cliente digite as informações incorretas
                         else{
-                        console.log('Erro insira a forma de pagamento com as seguintes formas (Meses) ou (Anos)!!!')
+                        console.log('Erro: insira a forma de pagamento com as seguintes formas (Meses) ou (Anos)!!!')
                         }
                     })
                 })
